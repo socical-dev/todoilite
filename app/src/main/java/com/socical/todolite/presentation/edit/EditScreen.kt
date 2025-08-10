@@ -3,6 +3,8 @@ package com.socical.todolite.presentation.edit
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -53,17 +55,20 @@ fun EditScreen(
                 onValueChange = { title = it },
                 label = { Text("Title (placeholder)") },
                 singleLine = true,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
             )
             OutlinedTextField(
                 value = description,
                 onValueChange = { description = it },
                 label = { Text("Description (placeholder)") },
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 100.dp),
+                minLines = 4
             )
             Button(
                 onClick = onDone,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Done (Demo)")
             }
