@@ -48,7 +48,7 @@ fun EditScreen(
                 .fillMaxSize()
                 .padding(inner)
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp)   //세로 방향으로 아이템 간격 설정
         ) {
             OutlinedTextField(
                 value = title,
@@ -63,7 +63,7 @@ fun EditScreen(
                 label = { Text("Description (placeholder)") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(min = 100.dp),
+                    .heightIn(min = 100.dp),    //EditText의 높이 제한
                 minLines = 4
             )
             Button(

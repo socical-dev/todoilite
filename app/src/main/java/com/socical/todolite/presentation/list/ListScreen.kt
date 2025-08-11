@@ -33,6 +33,10 @@ fun ListScreen(
     // 데모용 더미 데이터 (추후에 ViewModel의 State로 교체)
     val demo = remember { (1L..5L).map { it to "Todo #$it" } }
 
+    /*
+    * 화면 틀(상단 바, 하단 바, 콘텐츠 영역 등)을 구성해주는 역할
+    * 이 틀 안에 들어갈 콘텐츠가 다른 요소에 겹치지 않도록 inner라는 이름의 여백 값을 제공
+    * */
     Scaffold(
         topBar = { TopAppBar(title = { Text("Todo List") }) },
         floatingActionButton = {
@@ -44,7 +48,7 @@ fun ListScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(inner),
+                .padding(inner),    // Scaffold가 알려준 여백(inner)만큼 LazyColumn의 안쪽 여백 설정
             contentPadding = PaddingValues(12.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
