@@ -31,11 +31,21 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditScreen(
+<<<<<<< HEAD
+=======
+    todoId: Long?,
+>>>>>>> a19b7de (feat(mvvm): add List/Edit ViewModels and UiState; bind screens to StateFlow)
     onDone: () -> Unit,
     vm: EditViewModel = viewModel()
 ) {
 
     val state by vm.uiState.collectAsState()
+<<<<<<< HEAD
+=======
+
+    // 화면 진입 시 ui에 따라 상태 초기화 (추후에는 SavedStateHandle/Hilt 사용 예정)
+    LaunchedEffect(todoId) { vm.load(todoId) }
+>>>>>>> a19b7de (feat(mvvm): add List/Edit ViewModels and UiState; bind screens to StateFlow)
 
     Scaffold(
         topBar = {
@@ -68,9 +78,17 @@ fun EditScreen(
                 minLines = 4
             )
             Button(
+<<<<<<< HEAD
                 onClick = { vm.save(onDone) },
                 modifier = Modifier.fillMaxWidth()
             ) { Text("Save") }
+=======
+                onClick = onDone,   // 추후에 실제로 저장 후 popBackStack()으로 대체할 예정.
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Done")
+            }
+>>>>>>> a19b7de (feat(mvvm): add List/Edit ViewModels and UiState; bind screens to StateFlow)
         }
     }
 }
