@@ -42,8 +42,13 @@ class EditViewModel(
         }
     }
 
-    fun onTitleChange(v: String) { _uiState.value = _uiState.value.copy(title = v) }
-    fun onDescriptionChange(v: String) { _uiState.value = _uiState.value.copy(description = v) }
+    fun onTitleChange(v: String) {
+        _uiState.value = _uiState.value.copy(title = v)
+    }
+
+    fun onDescriptionChange(v: String) {
+        _uiState.value = _uiState.value.copy(description = v)
+    }
 
     fun save(onDone: () -> Unit) {
         val s = _uiState.value
