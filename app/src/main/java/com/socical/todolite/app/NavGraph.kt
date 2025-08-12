@@ -28,20 +28,13 @@ fun AppNavGraph() {
             )
         }
         composable(Route.Edit.route) {
-            EditScreen(
-                todoId = null,
-                onDone = { navController.popBackStack() }
-            )
+            EditScreen(onDone = { navController.popBackStack() })
         }
         composable(
             route = Route.EditWithId.route,
             arguments = listOf(navArgument("id") { type = NavType.LongType })
-        ) { backStackEntry ->
-            val id = backStackEntry.arguments?.getLong("id")
-            EditScreen(
-                todoId = id,
-                onDone = { navController.popBackStack() }
-            )
+        ) {
+            EditScreen(onDone = { navController.popBackStack() })
         }
     }
 }

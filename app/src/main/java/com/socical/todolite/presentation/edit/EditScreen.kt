@@ -31,20 +31,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EditScreen(
-    todoId: Long?,
     onDone: () -> Unit,
     vm: EditViewModel = viewModel()
 ) {
 
     val state by vm.uiState.collectAsState()
 
-    // 화면 진입 시 ui에 따라 상태 초기화 (추후에는 SavedStateHandle/Hilt 사용 예정)
-    LaunchedEffect(todoId) { vm.load(todoId) }
-
     Scaffold(
         topBar = {
             TopAppBar(title = {
-                Text(if (todoId == null) "Add Todo" else "Edit $todoId")
+                Text(if (vm.uiState.collectAsState().value.title.isBlank()) "Add Todo" else "Edit Todo")
             })
         }
     ) { inner ->
@@ -72,17 +68,9 @@ fun EditScreen(
                 minLines = 4
             )
             Button(
-                onClick = onDone,   // 추후에 실제로 저장 후 popBackStack()으로 대체할 예정.
+                onClick = { vm.save(onDone) },
                 modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Done")
-            }
+            ) { Text("Save") }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun EditScreenPreview() {
-    EditScreen(todoId = null, onDone = {})
 }
